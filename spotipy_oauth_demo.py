@@ -3,6 +3,7 @@
 
 from bottle import route, run, request
 import spotipy
+import sys
 import spotifork
 import appex
 from spotipy import oauth2
@@ -51,7 +52,7 @@ def index():
 		playlist = sp.playlist(playlist_id)
 		results = spotifork.get_tracks(sp, playlist["id"])
 		spotifork.write_tracks(sp, username, playlist, results)
-
+        sys.stderr.close()
 		return results
 
 	else:
