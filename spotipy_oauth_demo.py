@@ -26,12 +26,12 @@ sp_oauth = oauth2.SpotifyOAuth(
 
 def mk_playlist():
 	access_token = ""
-    token_info = sp_oauth.get_cached_token()
+	token_info = sp_oauth.get_cached_token()
 
 	if token_info:
 		print("Found cached token!")
 		access_token = token_info["access_token"]
-    if access_token:
+	if access_token:
 		sp = spotipy.Spotify(auth=access_token)
 		#results = sp.current_user()
 		url = appex.get_url()
@@ -42,8 +42,8 @@ def mk_playlist():
 		playlist = sp.playlist(playlist_id)
 		results = spotifork.get_tracks(sp, playlist["id"])
 		spotifork.write_tracks(sp, username, playlist, results)
-        return True
-    return False
+		return True
+	return False
 
 @route("/")
 def index():
@@ -72,7 +72,7 @@ def index():
 		playlist = sp.playlist(playlist_id)
 		results = spotifork.get_tracks(sp, playlist["id"])
 		spotifork.write_tracks(sp, username, playlist, results)
-		sys.stderr.close()
+		#sys.stderr.close()
 		return results
 
 	else:
@@ -90,5 +90,5 @@ def getSPOauthURI():
 	return auth_url
 
 if not mk_playlist():
-    run(host="", port=8080)
+	run(host="", port=8080)
 
