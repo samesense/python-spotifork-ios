@@ -3,7 +3,7 @@
 
 from bottle import route, run, request
 import spotipy
-import sys
+import sys, os
 import spotifork
 import appex
 from spotipy import oauth2
@@ -91,4 +91,4 @@ def getSPOauthURI():
 
 if not mk_playlist():
 	run(host="", port=8080)
-
+os._exit(0)
